@@ -26,13 +26,19 @@ public class StudentController {
         return studentServiceImp.findById(id);
     }
 
+    @PostMapping("/students")
+    public void saveStudent(@RequestBody Student student){
+        studentServiceImp.saveStudent(student);
+    }
+
     @PutMapping("/students")
     public void updateStudent(@RequestBody Student student){
         studentServiceImp.updateStudent(student);
     }
 
-    @PostMapping("/students")
-    public void saveStudent(@RequestBody Student student){
-        studentServiceImp.saveStudent(student);
+    @DeleteMapping("/students/{studentId}")
+    public void deleteStudent(@PathVariable int studentId){
+        studentServiceImp.deleteById(studentId);
     }
+
 }

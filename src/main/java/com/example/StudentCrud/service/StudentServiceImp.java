@@ -106,6 +106,7 @@ public class StudentServiceImp implements IStudentService{
             preparedStatement.setString(1,student.getCourse());
             preparedStatement.setDouble(2,student.getFee());
             preparedStatement.setString(3,student.getStudentName());
+            preparedStatement.setInt(4,student.getId());
             preparedStatement.executeUpdate();
             System.out.println("Student updated");
         }catch(Exception ex){
@@ -114,7 +115,16 @@ public class StudentServiceImp implements IStudentService{
     }
 
     @Override
-    public Student deleteById(int id) {
-        return null;
+    public void deleteById(int id) {
+        String deleteQuery = "DELETE FROM student where id=?";
+        try{
+            Connection conn = dataSource.getConnection();
+            PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
+            preparedStatement.setInt(1,id);
+            preparedStatement.executeUpdate();
+            System.out.println("Student deleted");
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 }

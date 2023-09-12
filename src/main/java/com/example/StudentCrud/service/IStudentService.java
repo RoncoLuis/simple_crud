@@ -13,7 +13,7 @@ public interface IStudentService {
     //Update
     public void updateStudent(Student student);
     //Delete
-    public Student deleteById(int id);
+    public void deleteById(int id);
 
 
 
